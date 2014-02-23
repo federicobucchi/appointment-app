@@ -7,7 +7,7 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          "dist/css/style.css": "less/style.less"
+          "www/css/style.css": "less/style.less"
         }
       }
     },
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
           style: 'expanded'
         },
         files: {
-          'dist/index.html': 'haml/index.haml'
+          'www/index.html': 'haml/index.haml'
         }
       }
     },
@@ -30,13 +30,22 @@ module.exports = function(grunt) {
         files: ['haml/*'],
         tasks: ['haml']
       }
+    },
+    copy: {
+      all: {
+        files: [
+          { expand: true, cwd: 'lib/', src: '**', dest: 'www/js/', filter: 'isFile' }
+        ]
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-haml');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('dev', ['watch']);
+  grunt.registerTask('move', ['copy']);
 
 };
