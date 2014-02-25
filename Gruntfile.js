@@ -48,6 +48,14 @@ module.exports = function(grunt) {
           port: 9001,
           base: 'www'
         }
+      },
+      doTests: {
+        server: {
+          options: {
+            port: 9002,
+            base: 'test/jasmine'
+          }
+        }
       }
     },
     open: {
@@ -85,7 +93,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   grunt.registerTask('dev', ['connect', 'open', 'watch']);
-  grunt.registerTask('test', ['jasmine'])
+  grunt.registerTask('test', ['jasmine', 'connect:doTests'])
   grunt.registerTask('www', ['copy', 'less', 'haml', 'coffee']);
 
 };
