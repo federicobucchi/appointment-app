@@ -66,6 +66,12 @@ module.exports = function(grunt) {
           filter: 'isFile'
         }],
       }
+    },
+    jasmine: {
+      src: "www/js/*.js",
+      options: {
+        specs: "test/jasmine/spec/*.js"
+      }
     }
   });
 
@@ -76,8 +82,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-open');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   grunt.registerTask('dev', ['connect', 'open', 'watch']);
+  grunt.registerTask('test', ['jasmine'])
   grunt.registerTask('www', ['copy', 'less', 'haml', 'coffee']);
 
 };
