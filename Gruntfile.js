@@ -79,6 +79,23 @@ module.exports = function(grunt) {
       src: "www/js/*.js",
       options: {
         specs: "test/jasmine/spec/*.js"
+      },
+      coverage: {
+          src: ['www/js/Player.js', 'www/js/Song.js'],
+          options: {
+              specs: ['test/jasmine/spec/*.js'],
+              template: require('grunt-template-jasmine-istanbul'),
+              templateOptions: {
+                  coverage: 'www/coverage/coverage.json',
+                  report: 'www/coverage',
+                  thresholds: {
+                      lines: 75,
+                      statements: 75,
+                      branches: 75,
+                      functions: 50
+                  }
+              }
+          }
       }
     }
   });
