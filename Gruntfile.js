@@ -111,6 +111,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', ['connect', 'open', 'watch']);
   grunt.registerTask('test', ['jasmine', 'connect:doTests'])
+  grunt.registerTask('travis', ['jasmine', 'connect:doTests']);
   grunt.registerTask('www', ['copy', 'less', 'haml', 'coffee']);
 
 };
